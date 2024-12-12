@@ -26,7 +26,8 @@
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/style.css">
-
+  
+  <link rel="icon" type="image/x-icon" href="images/LMS-icon.png">
 
 
 </head>
@@ -66,7 +67,7 @@
         <div class="d-flex align-items-center">
           <div class="site-logo">
             <a href="{{ route('home') }}" class="d-block">
-              <img src="images/logo.jpg" alt="Image" class="img-fluid">
+              <img src="images/logo.png" alt="Image" class="img-fluid">
             </a>
           </div>
           <div class="mr-auto">
@@ -75,23 +76,23 @@
                 <li class="active">
                   <a href="{{ route('home') }}" class="nav-link text-left">Home</a>
                 </li>
-                <li class="has-children">
-                  <a href="about.html" class="nav-link text-left">About Us</a>
-                  <ul class="dropdown">
-                    <li><a href="teachers.html">Our Teachers</a></li>
-                    <li><a href="about.html">Our School</a></li>
-                  </ul>
-                </li>
                 <li>
                   <a href="admissions.html" class="nav-link text-left">Admissions</a>
                 </li>
                 <li>
                   <a href="{{ route('courses') }}" class="nav-link text-left">Courses</a>
                 </li>
+                <li class="has-children">
+                  <a href="{{ route('about') }}" class="nav-link text-left">About Us</a>
+                  <ul class="dropdown">
+                    <li><a href="{{ route('teachers') }}">Our Teacher</a></li>
+                    <li><a href="{{ route('about') }}">Our School</a></li>
+                  </ul>
+                </li>
                 <li>
-                    <a href="contact.html" class="nav-link text-left">Contact</a>
-                  </li>
-              </ul>                                                                                                                                                                                                                                                                                          </ul>
+                  <a href="{{ route('contact-us') }}" class="nav-link text-left">Contact</a>
+                </li>
+              </ul>
             </nav>
 
           </div>
@@ -112,6 +113,30 @@
     </header>
 
 @yield('main')
+      
+    <div class="section-bg style-1" style="background-image: url('images/hero_1.jpg');">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="icon flaticon-mortarboard"></span>
+            <h3>Our Philosphy</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea? Dolore, amet reprehenderit.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="icon flaticon-school-material"></span>
+            <h3>Academics Principle</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+              Dolore, amet reprehenderit.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+            <span class="icon flaticon-library"></span>
+            <h3>Key of Success</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
+              Dolore, amet reprehenderit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="footer">
       <div class="container">
