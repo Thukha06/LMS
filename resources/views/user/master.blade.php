@@ -42,7 +42,9 @@
           <span class="icon-close2 js-menu-toggle"></span>
         </div>
       </div>
-      <div class="site-mobile-menu-body"></div>
+      <div class="site-mobile-menu-body">
+        
+      </div>
     </div>
 
 
@@ -73,23 +75,23 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active">
+                <li class="{{ Request::is('/') ? 'active' : '' }}">
                   <a href="{{ route('home') }}" class="nav-link text-left">Home</a>
                 </li>
-                <li>
+                {{-- <li>
                   <a href="admissions.html" class="nav-link text-left">Admissions</a>
-                </li>
-                <li>
+                </li> --}}
+                <li class="{{ Request::is('courses') ? 'active' : '' }}">
                   <a href="{{ route('courses') }}" class="nav-link text-left">Courses</a>
                 </li>
-                <li class="has-children">
+                <li class="has-children {{ Request::is('teachers') || Request::is('about') ? 'active' : '' }}">
                   <a href="{{ route('about') }}" class="nav-link text-left">About Us</a>
                   <ul class="dropdown">
                     <li><a href="{{ route('teachers') }}">Our Teacher</a></li>
                     <li><a href="{{ route('about') }}">Our School</a></li>
                   </ul>
                 </li>
-                <li>
+                <li class="{{ Request::is('contact-us') ? 'active' : '' }}">
                   <a href="{{ route('contact-us') }}" class="nav-link text-left">Contact</a>
                 </li>
               </ul>
