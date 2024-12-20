@@ -9,7 +9,7 @@
       <div class="row align-items-end">
         <div class="col-lg-7">
           <h2 class="mb-0">Courses</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+          <p>Offering comprehensive, structured learning paths designed to meet diverse educational needs and empower students to achieve their goals.</p>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div class="site-section">
+<div class="site-section" id="view">
   <div class="container">
 
 
@@ -33,96 +33,37 @@
         <h2 class="section-title-underline mb-3">
           <span>Popular Courses</span>
         </h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, id?</p>
+        <p>Explore in-demand, high-quality programs designed to enhance skills and knowledge for academic and professional success.</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-12">
           <div class="owl-slide-3 owl-carousel">
+            @foreach ($courses as $course)
               <div class="course-1-item">
                 <figure class="thumnail">
-                  <a href="course-single.html"><img src="images/course_1.jpg" alt="Image" class="img-fluid"></a>
-                  
-                  <div class="category"><h3>Mobile Application</h3></div>  
+                  <div class="thumbnail-wrapper">
+                    <a href="{{ route('course-detail', $course->slug)  }}">
+                      <img src="uploads/{{ $course->avatar }}" alt="Image" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="price">Free</div>
+                  <div class="category"><h3>{{ $course->category->name }}</h3></div>  
                 </figure>
                 <div class="course-1-content pb-4">
-                  <h2>How To Create Mobile Apps Using Ionic</h2>
-                  
-                  <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                  <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
+                  <h2>{{ $course->title }}</h2>
+                  <p class="desc mb-4">
+                    {!! truncateWords($course->description, 13) !!}
+                  </p>
+                  <p>
+                    <a href="{{ route('course-detail', $course->slug) }}" class="btn btn-primary rounded-0 px-4">
+                      View Detail
+                    </a>
+                  </p>
                 </div>
               </div>
-  
-              <div class="course-1-item">
-                <figure class="thumnail">
-                  <a href="course-single.html"><img src="images/course_2.jpg" alt="Image" class="img-fluid"></a>
-                  
-                  <div class="category"><h3>Web Design</h3></div>  
-                </figure>
-                <div class="course-1-content pb-4">
-                  <h2>How To Create Mobile Apps Using Ionic</h2>
-                  
-                  <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                  <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                </div>
-              </div>
-  
-              <div class="course-1-item">
-                <figure class="thumnail">
-                  <a href="course-single.html"><img src="images/course_3.jpg" alt="Image" class="img-fluid"></a>
-                  
-                  <div class="category"><h3>Arithmetic</h3></div>  
-                </figure>
-                <div class="course-1-content pb-4">
-                  <h2>How To Create Mobile Apps Using Ionic</h2>
-                  
-                  <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                  <p><a href="courses-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                </div>
-              </div>
-
-              <div class="course-1-item">
-                <figure class="thumnail">
-                    <a href="course-single.html"><img src="images/course_4.jpg" alt="Image" class="img-fluid"></a>
-                  
-                  <div class="category"><h3>Mobile Application</h3></div>  
-                </figure>
-                <div class="course-1-content pb-4">
-                  <h2>How To Create Mobile Apps Using Ionic</h2>
-                  
-                  <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                  <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                </div>
-              </div>
-  
-              <div class="course-1-item">
-                <figure class="thumnail">
-                    <a href="course-single.html"><img src="images/course_5.jpg" alt="Image" class="img-fluid"></a>
-                  
-                  <div class="category"><h3>Web Design</h3></div>  
-                </figure>
-                <div class="course-1-content pb-4">
-                  <h2>How To Create Mobile Apps Using Ionic</h2>
-                  
-                  <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                  <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                </div>
-              </div>
-  
-              <div class="course-1-item">
-                <figure class="thumnail">
-                    <a href="course-single.html"><img src="images/course_6.jpg" alt="Image" class="img-fluid"></a>
-                  
-                  <div class="category"><h3>Mobile Application</h3></div>  
-                </figure>
-                <div class="course-1-content pb-4">
-                  <h2>How To Create Mobile Apps Using Ionic</h2>
-                  
-                  <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                  <p><a href="course-single.html" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                </div>
-              </div>
+            @endforeach
   
           </div>
   
@@ -132,28 +73,6 @@
     
     
   </div>
-</div>
-
-<div class="site-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="course-1-item">
-                    <figure class="thumnail">
-                    <a href="course-single.html"><img src="images/course_1.jpg" alt="Image" class="img-fluid"></a>
-                    {{-- <div class="price">$99.00</div> --}}
-                    <div class="category"><h3>Mobile Application</h3></div>  
-                    </figure>
-                    <div class="course-1-content pb-4">
-                    <h2>How To Create Mobile Apps Using Ionic</h2>
-                    <p class="desc mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique accusantium ipsam.</p>
-                    <p><a href="{{ route('course-detail') }}" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>
 
   @endsection

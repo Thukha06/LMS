@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AdminUser;
 
 class TeacherController extends Controller
 {
@@ -11,7 +12,11 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('user.teacher');
+        // Retrieving users with role Instructor
+        $teachers = AdminUser::whereHas('roles', function($query) {
+            $query->where('name', 'Instructor');
+        })->get(); 
+        return view('user.teacher', compact('teachers'));
     }
 
     /**

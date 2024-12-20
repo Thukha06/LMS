@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
       $('.site-mobile-menu .has-children').each(function(){
         var $this = $(this);
         
-        $this.prepend('<span class="arrow-collapse collapsed">');
+        $this.prepend('<span class="arrow-collapse collapsed"></span>');
 
         $this.find('.arrow-collapse').attr({
           'data-toggle' : 'collapse',
@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 
       });
 
-    }, 1000);
+    }, 500);
 
 		$('body').on('click', '.arrow-collapse', function(e) {
       var $this = $(this);
@@ -63,17 +63,6 @@ jQuery(document).ready(function($) {
       e.preventDefault();  
       
     });
-
-		$(window).resize(function() {
-			var $this = $(this),
-				w = $this.width();
-
-			if ( w > 768 ) {
-				if ( $('body').hasClass('offcanvas-menu') ) {
-					$('body').removeClass('offcanvas-menu');
-				}
-			}
-		})
 
 		$('body').on('click', '.js-menu-toggle', function(e) {
 			var $this = $(this);
@@ -88,6 +77,17 @@ jQuery(document).ready(function($) {
 			}
 		}) 
 
+		$(window).resize(function() {
+			var $this = $(this),
+				w = $this.width();
+
+			if ( w > 768 ) {
+				if ( $('body').hasClass('offcanvas-menu') ) {
+					$('body').removeClass('offcanvas-menu');
+				}
+			}
+		})
+
 		// click outisde offcanvas
 		$(document).mouseup(function(e) {
 	    var container = $(".site-mobile-menu");
@@ -97,6 +97,20 @@ jQuery(document).ready(function($) {
 				}
 	    }
 		});
+
+		// Allow link navigation unless part of dropdown
+		$('body').on('click', '.site-nav-wrap a', function(e) {
+			var $this = $(this);
+			if ($this.siblings('.collapse').length === 0) {
+				// No dropdown, allow navigation
+				window.location.href = $this.attr('href');
+			} else {
+				// Has dropdown, toggle collapse
+				e.preventDefault();
+				$this.siblings('.collapse').collapse('toggle');
+			}
+		});
+		
 	}; 
 	siteMenuClone();
 

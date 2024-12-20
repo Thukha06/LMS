@@ -31,9 +31,11 @@ class UserInfoController extends AdminController
         $grid->column('admin_user_id', __('Admin user id'))->hide();
         $grid->column('adminUser.avatar', __('Avatar'))->image('', 50, 50); // Show the avatar as an image
         $grid->column('adminUser.username', __('Username'));
+        $grid->column('adminUser.name', __('Name'));
         $grid->column('email', __('Email'));
         $grid->column('email_verified_at', __('Email verified at'));
         $grid->column('phone_number', __('Phone number'));
+        $grid->column('description', __('Description'))->hide();
         $grid->column('created_at', __('Created at'))->hide();
         $grid->column('updated_at', __('Updated at'))->hide();
 
@@ -53,9 +55,12 @@ class UserInfoController extends AdminController
         $show->field('adminUser.avatar', __('Avatar'))->image('', 100, 100);
         $show->field('id', __('Id'));
         $show->field('admin_user_id', __('Admin user id'));
+        $show->field('adminUser.username', __('Username'));
+        $show->field('adminUser.name', __('Name'));
         $show->field('email', __('Email'));
         $show->field('email_verified_at', __('Email verified at'));
         $show->field('phone_number', __('Phone number'));
+        $show->field('description', __('Description'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -83,6 +88,7 @@ class UserInfoController extends AdminController
         $form->email('email', __('Email'));
         $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
         $form->text('phone_number', __('Phone number'));
+        $form->text('description', __('Description'));
 
         return $form;
     }

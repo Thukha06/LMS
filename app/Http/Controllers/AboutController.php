@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AdminUser;
 
 class AboutController extends Controller
 {
@@ -11,7 +12,11 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('user.about');
+        // Retrieving users with role Instructor
+        $teachers = AdminUser::whereHas('roles', function($query) {
+            $query->where('name', 'Instructor');
+        })->get(); 
+        return view('user.about', compact('teachers'));
     }
 
     /**

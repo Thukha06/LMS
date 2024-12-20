@@ -164,6 +164,10 @@ return [
         'directory' => [
             'image' => 'images',
             'file'  => 'files',
+            'courses' => 'courses',
+            'modules' => 'modules',
+            'assignments' => 'assignments',
+            'submissions' => 'submissions',
         ],
     ],
 
@@ -412,6 +416,21 @@ return [
     'extensions' => [
         'media-manager' => [
             'disk' => 'admin'   // Points to the disk set in config/filesystem.php
+        ],
+
+        'ckeditor' => [
+
+            //Set to false if you want to disable this extension
+            'enable' => true,
+
+            // Editor configuration
+            'config' => [
+                'extraPlugins' => 'tab',   // Enables the Tab plugin
+                'tabSpaces' => 4,          // Inserts 4 spaces for a tab
+                // 'toolbar' => [
+                //     // Customize the toolbar
+                // ],
+            ],
         ],
     ],
 ];

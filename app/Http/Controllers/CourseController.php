@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -11,7 +12,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('user.courses');
+        $courses = Course::with('category')->get();
+        return view('user.courses', compact('courses'));
     }
 
     /**

@@ -1,0 +1,188 @@
+/* Dropdown menu animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Start slightly above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End at normal position */
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* Style adjustments for the dropdown */
+.user-dropdown-menu {
+    display: none;  /* Initially hidden */
+    position: absolute;
+    border: 1px solid #ddd;
+    border-top: 2px solid #51be78;
+    top: 120%;
+    text-align: left;
+    min-width: 200px; /* Dropdown width */
+    background-color: #fff; /* White background */
+    border-radius: 0px 0px 8px 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow for better visibility */
+    z-index: 1000;
+    overflow: hidden;
+
+    /* Animation properties */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Active dropdown state */
+.user-dropdown-menu.show {
+    display: block; /* Make visible */
+    animation: fadeInDown 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* Fade-in dropdown (appear) */
+.user-dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    font-size: 14px; /* Slightly smaller font */
+    color: #51be78;
+    text-decoration: none;
+}
+
+/* Fade-out dropdown (disappear) */
+.user-dropdown-menu.fade-out {
+    animation: fadeOutUp 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.user-dropdown-menu a:hover {
+    background-color: #f9f9f9;
+}
+
+.user-dropdown-menu .logout {
+    color: #e63946; /* Red for logout */
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0px 0px 8px 8px; /* Rounded corners */
+    transition: background 0.3s ease;
+}
+
+.user-dropdown-menu .logout:hover {
+    background-color: #ffebeb; /* Softer hover background for logout */
+    border-radius: 0px 0px 8px 8px; /* Rounded corners */
+}
+
+/* Divider line */
+.dropdown-divider {
+    border-top: 1px solid #eee;
+    margin: 0;
+}
+
+
+/* Profile image hover effect */
+.profile-image {
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.user-dropdown-toggle:hover .profile-image {
+    transform: scale(1.1); /* Slightly enlarge the profile image on hover */
+}
+
+/* Dropdown arrow styles */
+#dropdown-arrow {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 8px 8px 0px 0px; /* Optional for rounded corners */
+}
+
+.thumbnail-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}  
+
+/* Desktop screens */
+@media (min-width: 992px) {
+    .user-dropdown-menu {
+        left: 20%; /* Center on PC */
+        transform: translateX(0); /* Adjust horizontally for large screens */
+    }
+}
+
+/* Medium screens (tablets, etc.) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .user-dropdown-menu {
+        left: 70%; /* Adjust left positioning for medium screens */
+    }
+}
+
+/* Ensure dropdown works well on mobile */
+@media (max-width: 768px) {
+    .user-dropdown-menu {
+        left: 50%; /* Adjust the position for mobile screens */
+        transform: translateX(0); /* Center the menu horizontally */
+    }
+}
+
+/* Default styles for desktop */
+.hero-slide {
+    position: relative;
+}
+
+.hero-slide .intro-section {
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Full height for desktop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+.hero-slide .btn {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+}
+  
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .hero-slide .intro-section {
+        height: 33vh !important; /* Explicit height for mobile */
+        background-size: cover;
+        background-position: top center; /* Ensures focus is on the top */
+    }
+
+    .hero-slide h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-slide .btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+  

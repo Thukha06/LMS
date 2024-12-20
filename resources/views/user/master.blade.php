@@ -8,26 +8,27 @@
 
 
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
-  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
 
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
 
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="{{ asset('fonts/flaticon/font/flaticon.css') }}">
 
-  <link rel="stylesheet" href="css/aos.css">
-  <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
+  <link href="{{ asset('css/jquery.mb.YTPlayer.min.css') }}" media="all" rel="stylesheet" type="text/css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
   
-  <link rel="icon" type="image/x-icon" href="images/LMS-icon.png">
+  <link rel="icon" type="image/x-icon" href="{{ asset('images/LMS-icon.png') }}">
 
 
 </head>
@@ -52,13 +53,34 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-9 d-none d-lg-block">
-            <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a> 
-            <a href="#" class="small mr-3"><span class="icon-phone2 mr-2"></span> 10 20 123 456</a> 
-            <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> info@mydomain.com</a> 
+            <a href="{{ route('contact-us') }}" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> Have a questions?</a> 
+            <a href="" class="small mr-3"><span class="icon-phone2 mr-2"></span> +959 777 439 816</a> 
+            <a href="" class="small mr-3"><span class="icon-envelope-o mr-2"></span> myatthukha000@gmail.com</a> 
           </div>
           <div class="col-lg-3 text-right">
-            <a href="{{ route('login') }}" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-            <a href="{{ route('register') }}" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+            @if(Auth::guard('user')->check())
+              <!-- Show profile picture and logout button if logged in -->
+              <a href="{{ route('home') }}" class="small mr-3 user-dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Welcome! {{ Auth::guard('user')->user()->name }}
+                <img src="{{ Auth::guard('user')->user()->avatar }}" class="rounded-circle profile-image" width="45" height="45">
+                <span id="dropdown-arrow">▼</span>
+              </a>
+              <div class="user-dropdown-menu" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{{ route('profile') }}#view">View Profile</a>
+                <a class="dropdown-item" href="{{ route('profile') }}#view2">My Courses</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item logout" href="{{ route('logout') }}"  data-toggle="modal" data-target=".bd-example-modal-sm">
+                  Log Out&nbsp;&nbsp;<span class="icon-sign-out"></span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                </form>
+              </div>
+             @else
+              <!-- Show login and register links if not logged in -->
+              <a href="{{ route('login') }}" class="small mr-3"><span class="icon-sign-in"></span>&nbsp;&nbsp;Log In</a>
+              <a href="{{ route('register') }}" class="small btn btn-primary px-4 py-2 rounded-1"><span class="icon-users"></span>&nbsp;Register</a>
+            @endif
           </div>
         </div>
       </div>
@@ -69,7 +91,7 @@
         <div class="d-flex align-items-center">
           <div class="site-logo">
             <a href="{{ route('home') }}" class="d-block">
-              <img src="images/logo.png" alt="Image" class="img-fluid">
+              <img src="{{ asset('images/logo.png') }}" alt="Image" class="img-fluid">
             </a>
           </div>
           <div class="mr-auto">
@@ -114,39 +136,15 @@
 
     </header>
 
-@yield('main')
-      
-    <div class="section-bg style-1" style="background-image: url('images/hero_1.jpg');">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <span class="icon flaticon-mortarboard"></span>
-            <h3>Our Philosphy</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea? Dolore, amet reprehenderit.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <span class="icon flaticon-school-material"></span>
-            <h3>Academics Principle</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
-              Dolore, amet reprehenderit.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <span class="icon flaticon-library"></span>
-            <h3>Key of Success</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
-              Dolore, amet reprehenderit.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  @yield('main')
 
     <div class="footer">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
-            <p class="mb-4"><img src="images/logo.png" alt="Image" class="img-fluid"></p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nemo minima qui dolor, iusto iure.</p>  
-            <p><a href="#">Learn More</a></p>
+            <p class="mb-4"><img src="{{ asset('images/logo.png') }}" alt="Image" class="img-fluid"></p>
+            <p>A comprehensive platform designed to facilitate course management, student engagement, and educational content delivery, streamlining the learning process for all users.</p>  
+            <p><a href="{{ route('about') }}">Learn More</a></p>
           </div>
           <div class="col-lg-3">
             <h3 class="footer-heading"><span>Our Campus</span></h3>
@@ -187,7 +185,8 @@
             <div class="copyright">
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+                    {{-- | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a> --}}
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
             </div>
@@ -200,30 +199,98 @@
   </div>
   <!-- .site-wrap -->
 
+  {{-- modal --}}
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Logout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to log out?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmLogout">Yes, Log Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- loader -->
   <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#51be78"/></svg></div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.fancybox.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/jquery.mb.YTPlayer.min.js"></script>
+  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ asset('js/aos.js') }}"></script>
+  <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+  <script src="{{ asset('js/jquery.mb.YTPlayer.min.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const userDropdownToggle = document.getElementById('userDropdown');
+    const userDropdownMenu = document.querySelector('.user-dropdown-menu');
+    const dropdownArrow = document.getElementById('dropdown-arrow');
+
+    // Function to close the dropdown with fade-out animation
+    function closeDropdown() {
+        userDropdownMenu.classList.add('fade-out');
+        dropdownArrow.textContent = '▼';
+
+        // Wait for the fade-out animation to complete before hiding
+        setTimeout(() => {
+            userDropdownMenu.classList.remove('show', 'fade-out');
+        }, 300); // Match the animation duration
+    }
+
+    // Toggle dropdown and arrow
+    userDropdownToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        if (!userDropdownMenu.classList.contains('show')) {
+            userDropdownMenu.classList.add('show');
+            dropdownArrow.textContent = '▲';
+        } else {
+            closeDropdown();
+        }
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function(event) {
+        if (!userDropdownToggle.contains(event.target) && !userDropdownMenu.contains(event.target)) {
+          if (userDropdownMenu.classList.contains('show')) {
+              closeDropdown();
+          }
+        }
+    });
+  });
 
 
+  $(document).ready(function() {
+    // Prevent form submission when logout button is clicked
+    $('#logout-form').submit(function(event) {
+      event.preventDefault(); // Prevent immediate form submission
+    });
 
-
-  <script src="js/main.js"></script>
-
+    // Confirm logout when the user clicks "Yes, Log Out"
+    $('#confirmLogout').click(function() {
+      // Submit the form to log out
+      document.getElementById('logout-form').submit();
+    });
+  });
+  </script>
+  @stack('scripts')
 </body>
-
 </html>
